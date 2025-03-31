@@ -1,0 +1,26 @@
+.inner-container {
+  max-width: 400px;
+  background: #0000007a;
+  display: flex;
+
+  width: 0%;
+
+  height: 200px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+}
+.inner-container > * {
+  text-align: center;
+  margin: 1rem;
+  font-size: 1.5rem;
+}
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

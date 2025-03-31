@@ -1,0 +1,209 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<title>ACM</title>
+<link rel="stylesheet" href="{% static 'MainApp/info.css'%}" />
+
+{% endblock head %} {% block body %}
+<div class="inner-container">
+  <div class="event-header ">
+  <div class="event-title animate__animated animate__bounceInDown">ACM Nexus 2.0</div>
+  <div class="event-subtitle animate__animated animate__backInLeft">Unite Through Innovation</div>
+</div>
+<div class="content">
+    <div class="overview inner-content">
+        <h3>Overview</h3>
+        <ul class="points">
+            <li><strong>Theme:</strong><br> Innovation across multiple domains</li>
+            <li><strong>Objective:</strong><br> Encourage creative solutions to diverse problem statements within the given themes.</li>
+            <li><strong>Time:</strong><br> April 11th, 2025, from 11:00 AM to April 12th, 2025, 11:00 AM</li>
+            <li><strong>Venue:</strong><br> KLS GIT, InfoTech building</li>
+            <li><strong>Team size:</strong><br> 4 members per team</li>
+        </ul>
+    </div>
+    <div class="event-timeline inner-content">
+        <h3>Event Timeline</h3>
+        <ul class="points">
+            <li><strong>April 11th, 2025:</strong></li> <ul><li>11:00 AM: Event starts.</li><li>2:00 PM: Round 1 of evaluation</li><li>o	7:00 PM: Round 2 of evaluation</li></ul>
+            <li><strong>April 12th, 2025:</strong></li><ul><li>o	9:00 AM: Round 3 of evaluation</li><li>o	11:00 AM: Event ends, project submissions close.</li><li>o	11:30 AM - 12:00 PM: Project presentations and judging.</li></ul>
+        </ul>
+    </div>
+    <div class="General-rules inner-content">
+        <h3>General Rules</h3>
+        <ul class="points">
+            <li><strong>Team Formation:</strong></li> <ul><li>Teams must consist of exactly 4 members</li></ul>
+            <li><strong>Eligibility:</strong></li><ul><li>All team members should belong to the same college.</li><li>Participants must abide by the event's Code of Conduct.</li></ul>
+            <li><strong>Project Development:</strong></li> <ul><li>Projects should align with at least one of the provided problem statements</li><li>Use of open-source libraries and APIs is permitted</li></ul>
+        </ul>
+    </div>
+    <div class="submission inner-content">
+        <h3>Submission</h3>
+        <ul class="points">
+            <li>Each team must submit their project by the specified deadline</li>
+            <li>Submissions should include a presentation (slides or video) and a brief documentation describing the project.</li>
+        </ul>
+    </div>
+    <div class="judging-ceiteria inner-content">
+        <h3>Judging Criteria</h3>
+        <ul class="points">
+            <li>Projects will be evaluated based on innovation, technical complexity, relevance to the problem statement, and presentation quality.</li>
+        </ul>
+    </div>
+    <div class="code-of-conduct inner-content">
+        <h3>Code of Conduct</h3>
+        <ul class="points">
+            <li>Respectful and ethical behaviour is expected from all participants</li>
+            <li>Plagiarism or using someone else's work without attribution is strictly prohibited</li>
+        </ul>
+    </div>
+    <div class="Disclaimer inner-content">
+        <h3>Disclaimer</h3>
+        <div>ACM KLS GIT reserves the right to modify the event rules and guidelines if deemed necessary. Any changes will be communicated to the participants promptly</div>
+    </div>
+</div>
+<div class="page-background"></div>
+
+    <div class="calendar-container">
+        <div class="calendar-item">
+            <div class="date-box">
+                <div class="month">April</div>
+                <div class="day">11</div>
+            </div>
+            <div class="content-box">
+                <div class="title">Phase 1</div>
+                <div class="description">
+                    The first phase, Ideation & Problem Identification, will focus on brainstorming and conceptualizing project ideas. Teams will identify a real-world problem related to the hackathon theme and work on defining a feasible solution. During this stage, participants will submit an initial abstract or proposal outlining their approach, objectives, and expected outcomes.
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="calendar-item april">
+            <div class="date-box">
+                <div class="month">April </div>
+                <div class="day">11</div>
+            </div>
+            <div class="content-box">
+                <div class="title">Phase 2</div>
+                <div class="description">
+                    In the Prototype Development phase, teams will begin building the basic structure of their solution. They will focus on implementing the core functionalities of their project, transforming their idea into a working prototype. Mentors will be available to provide feedback and guidance, ensuring that teams stay on track and refine their concepts as they progress.
+                </div>
+            </div>
+        </div>
+        <div class="calendar-item april">
+            <div class="date-box">
+                <div class="month">April </div>
+                <div class="day">12</div>
+            </div>
+            <div class="content-box">
+                <div class="title">Phase 3</div>
+                <div class="description">
+                    The third phase, Refinement & Testing, will be dedicated to optimizing and debugging the project. Teams will work on improving the user interface (UI) and user experience (UX), fine-tuning their solution for efficiency and reliability. Rigorous testing will be conducted to ensure that the project functions smoothly, addressing any issues before the final phase..
+                </div>
+            </div>
+        </div>
+        
+   
+        <div class="calendar-item november">
+            <div class="date-box">
+                <div class="month">April</div>
+                <div class="day">12</div>
+            </div>
+            <div class="content-box">
+                <div class="title">Phase 4</div>
+                <div class="description">
+                    In the Final Presentation phase, teams will showcase their project to a panel of judges. They will explain their approach, the challenges they faced, and the impact of their solution. A live demonstration or a well-structured presentation will help convey their idea effectively, ultimately determining their standing in the competition.
+                </div>
+            </div>
+        </div>
+    </div>
+{% comment %} <div class="container2">
+  <img src="{% static 'Images/roadmap.png' %}" alt="" />
+  <div class="text"></div>
+</div> {% endcomment %}
+<canvas id="nexusCanvas"></canvas>
+<script >
+    const canvas = document.getElementById('nexusCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+const particleCount = 100;
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.color = `rgba(173, 216, 230, 0.5)`;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+}
+
+function createParticles() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+}
+
+function drawConnections() {
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 120) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(173, 216, 230, ${1 - distance / 120})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+    });
+
+    drawConnections();
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    createParticles();
+});
+
+createParticles();
+animate();
+</script>
+  {% endblock body %}
+
+
+

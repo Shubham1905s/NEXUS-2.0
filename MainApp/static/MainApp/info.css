@@ -1,0 +1,247 @@
+.container1 ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.container1 ul li {
+  font-size: 18px;
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.container1 ul li:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.03);
+}
+
+.container1 a {
+  color: #ffcc00;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.container1 a:hover {
+  text-decoration: underline;
+}
+
+.container2 {
+  width: 90%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.container2 img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.calendar-container {
+  max-width: 850px;
+  margin: 80px auto 0;
+  padding-top: 20px;
+}
+
+.calendar-item {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+  position: relative;
+  justify-content: center;
+}
+
+.date-box {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  position: relative;
+}
+
+.date-box::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: -2px;
+  bottom: -2px;
+  background-color: rgba(0, 0, 0, 0.03);
+  z-index: -1;
+}
+
+.month {
+  background-color: #e6b77e;
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 18px;
+  font-weight: normal;
+  width: 100%;
+}
+
+.day {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+  font-weight: bold;
+  color: #333;
+  padding-bottom: 10px;
+}
+
+.content-box {
+  flex: 1;
+  background-color: white;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
+  padding: 15px;
+  max-width: 600px;
+}
+
+.content-box::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: -2px;
+  bottom: -2px;
+  background-color: rgba(0, 0, 0, 0.03);
+  z-index: -1;
+}
+
+.title {
+  background-color: #e6b77e;
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.description {
+  padding: 15px;
+  color: #555;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .calendar-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .date-box {
+    margin-bottom: 10px;
+    margin-right: 0;
+    width: 120px;
+    height: 120px;
+  }
+
+  .day {
+    font-size: 50px;
+  }
+
+  .content-box {
+    max-width: 100%;
+  }
+
+  .description {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+.april .month,
+.april .title {
+  background-color: #d17a7a;
+}
+
+.november .month,
+.november .title {
+  background-color: #68b0b0;
+}
+
+.inner-container {
+  display: flex;
+  width: 90%;
+  height: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+.inner-container > * {
+  margin: 1rem;
+}
+.event-header {
+  width: 100%;
+  z-index: -1;
+  position: relative;
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 1244px;
+
+  background-color: #00000070;
+}
+.event-title {
+  font-family: "Rubik Lines", Roboto;
+  color: white;
+  font-size: 3.5rem;
+
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.cover {
+  width: 100%;
+  height: 4rem;
+  border-radius: 10px;
+}
+.content {
+  font-family: Roboto;
+  color: white;
+
+  font-weight: 600;
+
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.inner-content {
+  background-color: #7070703d;
+  max-width: 300px;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+}
+strong {
+  color: turquoise;
+}
+.inner-content > h3 {
+  padding-bottom: 1rem;
+  color: turquoise;
+}
+.event-subtitle {
+  font-family: Roboto;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+@media (min-width: 992px) {
+}

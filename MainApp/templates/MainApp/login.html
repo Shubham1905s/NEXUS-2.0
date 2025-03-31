@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title> Login and Registration Form </title>
+    <link rel="stylesheet" href="{% static 'MainApp/login.css'%}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+{% endblock head %}
+
+{% block body %}
+  <div class="conatiner-inner">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="{% static 'Images/frontImg.jpg' %}" alt="">
+        <div class="text">
+          <span class="text-1">ACM Nexus</span>
+          <span class="text-2">Unite Through Innovation</span>
+        </div>
+      </div>
+      <div class="back">
+        <img class="backImg" src="{% static 'Images/backImg.jpg' %}" alt="">
+        <div class="text">
+          <span class="text-1">ACM Nexus</span>
+          <span class="text-2">Unite Through Innovation</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Login</div>
+            {% csrf_token %}
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" placeholder="Enter your email" id="email" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" id='password' placeholder="Enter your password" required>
+              </div>
+              <div class="text"><a href="{% url 'MainApp:recovery' %}">Forgot password?</a></div>
+              <div class="button input-box">
+                <input type="submit" value="Submit" onclick="login()">
+              </div>
+              <div class="text sign-up-text">Don't have an account? <label for="flip">Signup now</label></div>
+            </div>
+      </div>
+        <div class="signup-form">
+          <div class="title">Signup</div>
+        <form action="{% url 'MainApp:register' %}" onsubmit="return validateForm()" method="post">
+          {% csrf_token %}
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" id="USN" name="USN" placeholder="Enter your USN" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="number" id="year" name="year" placeholder="Year of Graduation:" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input type="text" id='' name="email" placeholder="Enter your email" required>
+              </div>
+
+              <div class="button input-box">
+                <input type="submit" value="Submit">
+              </div>
+              <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+            </div>
+      </form>
+    </div>
+    </div>
+    </div>
+  </div>
+{% endblock body %}
+{% block script %}<script type="text/javascript" src="{% static '/MainApp/login.js' %}"></script>
+
+<canvas id="nexusCanvas"></canvas>
+<script >
+    const canvas = document.getElementById('nexusCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+const particleCount = 100;
+
+class Particle {
+  constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.color = `rgba(173, 216, 230, 0.5)`;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+}
+
+function createParticles() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+}
+
+function drawConnections() {
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 120) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(173, 216, 230, ${1 - distance / 120})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+    });
+
+    drawConnections();
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    createParticles();
+});
+
+createParticles();
+animate();
+</script>
+{% endblock script %}
+

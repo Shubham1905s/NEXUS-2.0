@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <title>ACM</title>
+    <link rel="stylesheet" href="{% static 'MainApp/home.css'%}">
+{% endblock head %}
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="inner-container">
+    <div class="event-header">
+        <div class="event-title animate__animated animate__bounceInDown">
+            ACM Nexus 2.0
+        </div>
+        <div class="event-subtitle-wrapper">
+            <div class="line"></div>
+            <div class="event-subtitle animate__animated animate__backInLeft">
+                Unite Through Innovation
+            </div>
+            <div class="line"></div>
+        </div>
+        
+    </div>
+</div>
+<div class="registration-open animate__animated animate__fadeInUp">
+    <span class="loop-text">Registrations Are Open!</span>
+</div>
+<div class="acm-description">
+    <h2>ACM Nexus-Unite Through Innovation </h2>
+    <p>
+        The Association for Computing Machinery (ACM) is the world’s largest educational and scientific computing society, uniting educators, researchers, and professionals to inspire dialogue, share resources, and address the field's challenges. 
+        ACM strengthens the computing profession’s collective voice through strong leadership, promotion of the highest standards, and recognition of technical excellence.
+    </p>
+    <p>
+        ACM provides the computing field's premier Digital Library and serves its members and the computing profession with leading-edge publications, conferences, and career resources.
+    </p>
+</div>
+<div class="registration-section">
+    <div class="registration-content">
+        <h1 class="registration-title">REGISTRATIONS</h1>
+        <h2 class="registration-subtitle">Open Now!</h2>
+        <p>
+            Get ready to challenge your STEM knowledge! Participate in ACM Nexus 2025, compete with brilliant undergraduates across the nation, and seize the opportunity to win exciting cash prizes and nationwide recognition!
+        </p>
+        <a href="{% url 'MainApp:login' %}" class="register-button">Click here to register!</a>
+    </div>
+
+
+    <div class="side-images">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <img src="{% static 'Images/ss1.png' %}" alt="Side Image 1" class="side-image-1">
+        <img src="{% static 'Images/ss2.png' %}" alt="Side Image 2" class="side-image-2">
+    </div>
+</div>
+
+<canvas id="nexusCanvas"></canvas>
+<script >
+    const canvas = document.getElementById('nexusCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+const particleCount = 100;
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.color = `rgba(173, 216, 230, 0.5)`;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+}
+
+function createParticles() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+}
+
+function drawConnections() {
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 120) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(173, 216, 230, ${1 - distance / 120})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+    });
+
+    drawConnections();
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    createParticles();
+});
+
+createParticles();
+animate();
+</script>
+{% endblock body %}
+
+
+

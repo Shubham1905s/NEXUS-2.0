@@ -1,0 +1,241 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<title>About</title>
+<link rel="stylesheet" href="{% static 'MainApp/about.css'%}" />
+<style>
+  swiper-container {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+  }
+
+  swiper-slide img {
+    display: block;
+    width: 100%;
+  }
+</style>
+{% endblock head %} {% block body %}
+<body>
+  <div class="header">
+    <div>
+      <h1>ACM NEXUS 2.0</h1>
+      <p>About us</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="side-text">INCEPTION</div>
+
+    <div class="info-section">
+      <h2>ACM Nexus</h2>
+      <p>
+        ACM Nexus is an intense 24-hour hackathon where innovative minds come together to tackle real-world challenges through technology. Participants collaborate, code, and create impactful solutions to some of society’s most pressing issues. This event is not just a competition—it’s a platform for students to showcase their creativity, problem-solving skills, and technical expertise while making a meaningful difference.
+      </p>
+    </div>
+
+    <div class="image-placeholder">
+      <img src="{% static 'Images/thinking.png' %}" alt="" />
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="info-section">
+      <h2>TRADITIONS</h2>
+      <p>
+        Nexus has grown into a dynamic hub for inquisitive minds to collaborate, innovate, and push the boundaries of technology. What started as an initiative to bring together brilliant thinkers has now become an annual tradition, fostering creativity and problem-solving on a grand scale. Each edition introduces fresh challenges and opportunities, inspiring participants to explore new frontiers in science, technology, and societal impact.
+      </p>
+    </div>
+    <div class="sliderpics"></div>
+    <div class="image-placeholder">
+      <img src="{% static 'Images/group.png' %}" alt="" />
+    </div>
+  </div>
+
+  <div class="swiper-section" style="width: 100%;">
+    <swiper-container
+      class="mySwiper"
+      pagination="true"
+      effect="coverflow"
+      grab-cursor="true"
+      centered-slides="true"
+      slides-per-view="auto"
+      coverflow-effect-rotate="50"
+      coverflow-effect-stretch="0"
+      coverflow-effect-depth="100"
+      coverflow-effect-modifier="1"
+      coverflow-effect-slide-shadows="true"
+      autoplay-delay="2500"
+      autoplay-disable-on-interaction="false">
+      <swiper-slide>
+        <img src="{% static 'Images/people.jpg' %}" alt="" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="{% static 'Images/empower-ED.jpg' %}" alt="" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="{% static 'Images/cipherConquest.jpg' %}" alt="" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="{% static 'Images/posterverse.jpg' %}" alt="" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="{% static 'Images/something.jpg' %}" alt="" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="{% static 'Images/fiesta.jpg' %}" alt="" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="{% static 'Images/hack.jpg' %}" alt="" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="{% static 'Images/git.jpg' %}" alt="" />
+      </swiper-slide>
+ 
+  </div>
+
+  <div id="contact-US">
+    <div class="contact-section">
+      <div class="contact-info">
+        <h1>Contact Us</h1>
+        <p><strong>Phone</strong></p>
+        <p>
+          Coordinators:<br />
+          7259544987 <br />
+          9420689497
+        </p>
+        <p>
+          PR Team:<br />
+          8105193555 <br />
+          6362990994
+        </p>
+
+        <p><strong>Email</strong></p> 
+        <p>
+          <a href="mailto:22u1428@students.git.edu"> ACM KLS GIT </a>
+        </p>
+
+        <p><strong>Address :</strong></p>
+        <p>
+          KLS GIT Belgaum<br />
+          Udyambag Industrial Area, Udyambag,<br />
+          Belagavi, Karnataka ,<br />
+          India – 590006.
+        </p>
+      </div>
+
+      <div class="contact-form">
+        <form action="{% url 'MainApp:about' %}" method="POST">
+          {% csrf_token %}
+          <div class="form-row">
+            <input type="text" name="first-name" placeholder="First Name" required />
+            <input type="text" name="last-name" placeholder="Last Name" required />
+          </div>
+          <input type="email" name="email" placeholder="Email *" required />
+          <textarea name="message" rows="5" placeholder="Message" required></textarea>
+          <button type="submit" class="send-btn">Send</button>
+        </form>
+      </div>
+      
+      {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+  <canvas id="nexusCanvas"></canvas>
+<script >
+    const canvas = document.getElementById('nexusCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+const particleCount = 100;
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.color = `rgba(173, 216, 230, 0.5)`;
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+        if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+}
+
+function createParticles() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+}
+
+function drawConnections() {
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 120) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(173, 216, 230, ${1 - distance / 120})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+    });
+
+    drawConnections();
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    createParticles();
+});
+
+createParticles();
+animate();
+
+</script>
+  {% endblock body %}
+</body>

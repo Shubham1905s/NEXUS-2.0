@@ -1,0 +1,120 @@
+.inner-container {
+  display: flex;
+  padding: 2rem;
+  width: 90%;
+  /* max-width: 1000px; */
+  height: 40vh;
+  flex-direction: column;
+  align-items: center;
+}
+.about-header {
+  max-width: 1240px;
+  width: 100%;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index:10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* max-width: 1240px; */
+}
+.title-about {
+    font-family: 'Rubik Lines',Roboto;
+    color: rgb(211, 241, 246);
+    font-size: 3rem;
+    /* font-weight: 600; */
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+
+.main {
+  display: flex;
+  gap: 1rem;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: .5rem;
+  /* background-color: #00000066; */
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+  
+.section {
+  max-width: 400px;
+  border-radius: 10px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  z-index: 10;
+}
+  
+.heading {
+    color: rgb(121, 221, 211);
+    padding-bottom:2rem;
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  a {
+    color: turquoise;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  .card-header-title{
+    font-family: Roboto;
+    color:white;
+    font-size: 1rem;
+   
+    margin-bottom: 1rem;
+    text-align: center;
+  
+  }
+  .card{
+    margin: .5rem;
+    padding:.5rem;
+    color:white;
+    border-radius: 10px;
+    background-color: #00000095;
+    cursor: pointer;
+  }
+  .card:hover{
+    background-color: #00000075;
+    scale: 1.1;
+  }
+  @media screen and (max-width: 500px) {
+    .card:hover{
+      background-color: #000000e6;
+      scale: 1.6;
+    }
+  }
+
+ 
+  .card-content li {
+    list-style-type: "◆ ";  
+  }
+  body {
+
+    background: #0a0a0f; 
+}
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+ 
+}
+
+
+  
