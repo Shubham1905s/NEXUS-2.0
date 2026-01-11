@@ -14,7 +14,7 @@ ACM Nexus is a 24-hour coding competition organized by the ACM Students Chapter 
 2. **Install dependencies:** `pip install django`
 3. **Start the server:** `python manage.py runserver`
 
-
+ 
 ## Technologies Used
 - Django
 - HTML/CSS/JS
