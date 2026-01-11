@@ -2,7 +2,7 @@
 
 ## Overview
 ACM Nexus is a 24-hour coding competition organized by the ACM Students Chapter at KLS GIT. This repository hosts the code for the official website used for registration and team formation for the hackathon.
-
+ 
 ## Features
 - **User Authentication:** Students can sign up and log in securely.
 - **Team Registration:** Registered users can create or join teams for the hackathon.
