@@ -6,7 +6,7 @@ ACM Nexus is a 24-hour coding competition organized by the ACM Students Chapter 
 ## Features
 - **User Authentication:** Students can sign up and log in securely.
 - **Team Registration:** Registered users can create or join teams for the hackathon.
-- **Event Information:** Details about the hackathon schedule, rules, and guidelines.
+- **Event Information:** Details about the hackathon schedule, rules, and guidelines. 
 - **Responsive Design:** The site is optimized for various devices.
 
 ## Installation
